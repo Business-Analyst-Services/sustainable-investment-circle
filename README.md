@@ -14,6 +14,7 @@
 | `index.html`, `assets/`, `data/` | Static clickable prototype — the 12 screens from the 19 Aug 2026 member walkthrough, with working directory filters, channel switching, feed posting, connection requests and messaging, all against fictional sample data (`data/data.js`). No backend. Nothing is stored or sent. |
 | `docs/wayfinder-map.md` | The Wayfinder map: destination, decisions so far, tickets, fog of war, out of scope, handoff. Mirrored as GitHub Issues. |
 | `docs/wayfinder-one-pager.pdf` | One-page A3 visual of the plan. |
+| `docs/candidate-architecture.png` / `.pdf` | Candidate infrastructure architecture (GitHub → Vercel/Next.js · Clerk · Neon · Resend · Airwallex), each element tagged with the Wayfinder ticket that decides it. Candidate only until `#3 build-vs-platform` and `#8 tech-stack-hosting` close. |
 | **Issues** | The live map. The issue labelled `wayfinder:map` is the index; each `wayfinder:*` issue is one decision ticket. Open, unblocked, unassigned tickets are the **frontier**. |
 
 ## How to work the map

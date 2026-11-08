@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SIC — Candidate Infrastructure Architecture</title>
+<style>
+:root{
+  --ink:#17201c;--mute:#5a675f;--line:#cfd8d3;--paper:#fff;
+  --purple:#5b3fb8;--purple-bg:#f5f2fc;--purple-ln:#b9a8ea;
+  --blue:#1d5fd1;--blue-bg:#eef4fd;--blue-ln:#a9c1f0;
+  --green:#1f7a3f;--green-bg:#eef8f1;--green-ln:#a6d5b4;
+  --teal:#0f7a86;--teal-bg:#ecf8f9;--teal-ln:#9ed3d9;
+  --orange:#c7701a;--orange-bg:#fff6ec;--orange-ln:#f0c89a;
+  --sic:#1f5c48;--sic-bg:#eef5f1;--gold:#c9962b;--gold-bg:#fbf1d9;
+  --red:#b23a3a;--red-bg:#fdf0f0;--red-ln:#eab2b2;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"DejaVu Sans",system-ui,sans-serif;font-size:12px;line-height:1.3}
+.canvas{width:1700px;height:1190px;position:relative;padding:22px 28px 18px;overflow:hidden}
+h1{margin:0;text-align:center;font-size:34px;font-weight:800;letter-spacing:-.02em}
+.sub{text-align:center;color:var(--mute);font-size:15px;margin-top:4px}
+.sub b{color:var(--sic)}
+svg.wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.box{position:absolute;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;z-index:2}
+.box h3{margin:0;font-size:13.5px;font-weight:700}
+.box p{margin:3px 0 0;color:var(--mute);font-size:11px}
+.box.dashed{border-style:dashed;background:transparent}
+.layer{position:absolute;border:1.5px dashed;border-radius:14px;z-index:1}
+.layer>.lbl{position:absolute;top:-9px;left:14px;background:#fff;padding:0 6px;font-weight:700;font-size:12.5px}
+.layer>.lbl small{display:block;font-weight:500;color:var(--mute);font-size:10.5px}
+.tk{display:inline-block;background:var(--gold-bg);color:#6a4a0c;border-radius:4px;padding:1px 6px;font-size:9.5px;font-weight:700;font-family:"DejaVu Sans Mono",monospace;margin-top:5px}
+.logo{display:flex;align-items:center;gap:8px}
+.logo i{width:26px;height:26px;border-radius:7px;display:inline-grid;place-items:center;color:#fff;font-weight:800;font-size:13px;font-style:normal;flex:none}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.chip{border:1px solid;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;background:#fff}
+.lbl-wire{position:absolute;font-size:10.5px;font-weight:600;z-index:3;background:#fff;padding:0 4px;border-radius:3px}
+.p{color:var(--purple)}.b{color:var(--blue)}.g{color:var(--green)}.t{color:var(--teal)}.o{color:var(--orange)}.r{color:var(--red)}
+.purple{border-color:var(--purple-ln);background:var(--purple-bg)}.blue{border-color:var(--blue-ln);background:var(--blue-bg)}.green{border-color:var(--green-ln);background:var(--green-bg)}.teal{border-color:var(--teal-ln);background:var(--teal-bg)}.orange{border-color:var(--orange-ln);background:var(--orange-bg)}.red{border-color:var(--red-ln);background:var(--red-bg)}
+.white{background:#fff}
+.mini{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+.mini div{border:1px solid var(--line);border-radius:8px;padding:6px 7px;background:#fff;font-size:10.5px;text-align:center}
+.mini div b{display:block;font-size:11px}
+.legend{position:absolute;left:28px;bottom:36px;display:flex;gap:16px;font-size:10.5px;color:var(--mute);align-items:center;z-index:3}
+.legend span{display:flex;align-items:center;gap:5px}
+.legend .ln{width:22px;height:0;border-top:2px solid var(--ink)}
+.legend .ln.d{border-top-style:dashed}
+.foot{position:absolute;left:28px;bottom:14px;font-size:10.5px;color:var(--mute);z-index:3}
+</style>
+</head>
+<body>
+<div class="canvas" id="c">
+  <h1>Sustainable Investment Circle – Candidate Infrastructure Architecture</h1>
+  <div class="sub">Member community platform – application, identity, data, communication &amp; commercial architecture · <b>candidate only</b>: layers marked with a ticket are decided on the Wayfinder map</div>
+
+  <svg class="wires" id="wires"></svg>
+
+  <!-- 1 Access -->
+  <div class="layer purple" style="left:28px;top:300px;width:170px;height:360px"><div class="lbl p">1. Access &amp; Experience<small>who uses it</small></div></div>
+  <div class="box white" id="users" style="left:42px;top:330px;width:142px"><h3 class="p">Members</h3><p>ESG &amp; sustainable-investment professionals · free &amp; Premium</p></div>
+  <div class="box white" id="admins" style="left:42px;top:418px;width:142px"><h3 class="p">Community team</h3><p>Admins / moderators · approvals · support inbox</p></div>
+  <div class="box white" id="partners" style="left:42px;top:498px;width:142px"><h3 class="p">Partners &amp; advertisers</h3><p>Partner profiles · placements</p></div>
+  <div class="box white" id="phone" style="left:42px;top:578px;width:142px"><h3 class="p">Phone camera</h3><p>Scans a member's QR → opens their profile in the browser</p></div>
+
+  <div class="box" id="browser" style="left:238px;top:420px;width:130px;text-align:center"><h3>Web browser</h3><p>Any device · responsive web (no native app in v1)</p><span class="tk">#25 responsive</span></div>
+
+  <!-- 2 Source control -->
+  <div class="box blue" id="github" style="left:600px;top:112px;width:400px"><div class="logo"><i style="background:#111">⌥</i><h3>GitHub – Business-Analyst-Services/sustainable-investment-circle</h3></div><p>Source code · Wayfinder decision map (Issues) · prototype on GitHub Pages · CI/CD via Actions</p></div>
+  <div class="lbl-wire b" style="left:445px;top:116px;width:140px">2. Source Control &amp;<br>Deployment Layer</div>
+  <div class="layer blue" style="left:1050px;top:104px;width:330px;height:80px"><div class="lbl b">Environments</div></div>
+  <div class="box white" style="left:1064px;top:128px;width:94px;text-align:center;padding:6px"><h3 class="b" style="font-size:12px">main</h3><p>development</p></div>
+  <div class="box white" style="left:1168px;top:128px;width:94px;text-align:center;padding:6px"><h3 class="b" style="font-size:12px">preview</h3><p>staging / UAT</p></div>
+  <div class="box white" style="left:1272px;top:128px;width:94px;text-align:center;padding:6px"><h3 class="b" style="font-size:12px">production</h3><p>live members</p></div>
+  <div class="lbl-wire b" style="left:815px;top:200px">Code push / CI-CD / Deployments</div>
+
+  <!-- Platform frame -->
+  <div class="layer" style="left:400px;top:230px;width:1000px;height:700px;border-color:#444;border-style:dashed"><div class="lbl" style="font-size:17px;left:430px">SIC Platform</div></div>
+
+  <!-- DNS -->
+  <div class="box dashed" id="dns" style="left:420px;top:280px;width:160px;border-color:var(--purple-ln)"><h3 style="font-size:12px">Custom domain / DNS</h3><p>Member-facing domain · TLS certificate</p><span class="tk">#29 accounts-setup</span></div>
+
+  <!-- Vercel app -->
+  <div class="box" id="app" style="left:600px;top:262px;width:300px;border-color:var(--blue-ln);border-width:2px"><div class="logo"><i style="background:#111">▲</i><h3>Vercel – SIC Web App</h3></div><p style="margin-top:6px"><b>Frontend (Next.js)</b> · edge hosting &amp; delivery · Sydney region (syd1)</p><div class="chips"><span class="chip b" style="border-color:var(--blue-ln)">Home &amp; feed</span><span class="chip b" style="border-color:var(--blue-ln)">Members directory</span><span class="chip b" style="border-color:var(--blue-ln)">Channels</span><span class="chip b" style="border-color:var(--blue-ln)">Messages</span><span class="chip b" style="border-color:var(--blue-ln)">Events</span><span class="chip b" style="border-color:var(--blue-ln)">Research</span><span class="chip b" style="border-color:var(--blue-ln)">Partners</span><span class="chip b" style="border-color:var(--blue-ln)">Profile</span><span class="chip b" style="border-color:var(--blue-ln)">Premium</span><span class="chip b" style="border-color:var(--blue-ln)">Admin console</span></div><span class="tk">#3 build-vs-platform</span> <span class="tk">#8 tech-stack</span></div>
+  <div class="lbl-wire" style="left:440px;top:400px;color:var(--mute)">HTTPS / TLS · secure connection</div>
+
+  <!-- Clerk -->
+  <div class="box purple" id="clerk" style="left:1090px;top:280px;width:230px"><div class="logo"><i style="background:var(--purple)">C</i><h3>Clerk</h3></div><p>Authentication · sessions · user management</p><div class="chips"><span class="chip p" style="border-color:var(--purple-ln)">email + password / magic link</span><span class="chip p" style="border-color:var(--purple-ln)">MFA</span><span class="chip p" style="border-color:var(--purple-ln)">roles: member · premium · admin · partner</span><span class="chip p" style="border-color:var(--purple-ln)">corporate-email verification?</span></div><span class="tk">#9 identity-auth</span> <span class="tk">#5 eligibility</span></div>
+  <div class="lbl-wire p" style="left:928px;top:300px;width:150px;text-align:center">Login / Session / Identity<br><span style="color:var(--mute);font-weight:500">protected routes · role-based access</span></div>
+  <div class="lbl-wire p" style="left:1420px;top:262px;width:150px;font-size:12px">3. Identity &amp;<br>Security Layer</div>
+
+  <!-- 4 App logic -->
+  <div class="box green" id="api" style="left:600px;top:470px;width:300px"><h3 class="g">Application Logic / Server Actions / API</h3><p>Business rules · connection &amp; visibility rules · moderation hooks · Premium entitlement checks · search &amp; filters</p><div class="chips"><span class="chip g" style="border-color:var(--green-ln)">connections</span><span class="chip g" style="border-color:var(--green-ln)">messaging</span><span class="chip g" style="border-color:var(--green-ln)">feed rules</span><span class="chip g" style="border-color:var(--green-ln)">approvals</span><span class="chip g" style="border-color:var(--green-ln)">who-viewed-me</span></div><span class="tk">#10 domain-model</span> <span class="tk">#11–13</span> <span class="tk">#16</span></div>
+  <div class="lbl-wire g" style="left:430px;top:476px;width:150px;font-size:12px">4. Application /<br>API Layer</div>
+  <div class="lbl-wire g" style="left:612px;top:446px">Requests</div><div class="lbl-wire g" style="left:830px;top:446px">Responses</div>
+
+  <!-- Generators -->
+  <div class="box" id="gen" style="left:940px;top:470px;width:180px;border-color:var(--green-ln)"><h3 class="g" style="font-size:12.5px">Generated artefacts</h3><p>Profile <b>PDF</b> (serverless render) · connection <b>QR</b> codes · <b>ICS</b> calendar files</p><span class="tk">#18 profile-pdf-qr</span> <span class="tk">#20 events</span></div>
+
+  <!-- 5 Data -->
+  <div class="layer blue" style="left:420px;top:650px;width:430px;height:260px"><div class="lbl b">5. Data Layer</div></div>
+  <div class="box white" id="neon" style="left:434px;top:676px;width:150px"><div class="logo"><i style="background:#12b886">N</i><h3>Neon</h3></div><p>Postgres · Sydney (ap-southeast-2) · branching per preview</p><span class="tk">#6 privacy / residency</span></div>
+  <div class="box white" id="blob" style="left:434px;top:808px;width:150px;padding:7px 10px"><h3 style="font-size:12px">Vercel Blob / S3</h3><p>Photos · post attachments (5 × 25 MB) · uploaded documents</p></div>
+  <div class="mini" style="position:absolute;left:596px;top:676px;width:240px;z-index:2;grid-template-columns:1fr 1fr;gap:6px">
+    <div><b>Members &amp; orgs</b>profiles · roles</div><div><b>Connections</b>requests · graph</div>
+    <div><b>Channels &amp; posts</b>feed · reactions</div><div><b>Messages</b>DMs · groups</div>
+    <div><b>Events · providers · partners</b></div><div><b>Subscriptions &amp; profile views</b></div>
+  </div>
+  <div class="box dashed" style="left:596px;top:838px;width:240px;padding:6px 10px;border-color:var(--blue-ln)"><p style="margin:0"><b>Search:</b> Postgres full-text first; search service only if scale demands <span class="tk" style="margin:0 0 0 4px">#14</span></p></div>
+  <div class="lbl-wire g" style="left:520px;top:626px">Read / write data</div>
+
+  <!-- 6 Communication -->
+  <div class="layer teal" style="left:870px;top:650px;width:260px;height:260px"><div class="lbl t">6. Communication Layer</div></div>
+  <div class="box white" id="resend" style="left:884px;top:676px;width:232px"><div class="logo"><i style="background:#111">R</i><h3>Resend</h3></div><p>Transactional email · verified sending domain</p><div class="chips"><span class="chip t" style="border-color:var(--teal-ln)">welcome / verify</span><span class="chip t" style="border-color:var(--teal-ln)">connection requests</span><span class="chip t" style="border-color:var(--teal-ln)">message alerts</span><span class="chip t" style="border-color:var(--teal-ln)">event reminders</span><span class="chip t" style="border-color:var(--teal-ln)">Premium search alerts</span><span class="chip t" style="border-color:var(--teal-ln)">invites (CSV)</span><span class="chip t" style="border-color:var(--teal-ln)">digests</span></div><span class="tk">#23 notifications</span> <span class="tk">#22 invite-import</span></div>
+  <div class="lbl-wire t" style="left:905px;top:626px">Send emails</div>
+
+  <!-- Commercial -->
+  <div class="layer" style="left:1150px;top:650px;width:230px;height:260px;border-color:var(--gold)"><div class="lbl" style="color:#8a6512">Commercial Layer</div></div>
+  <div class="box white" id="airwallex" style="left:1164px;top:676px;width:202px"><div class="logo"><i style="background:#ff4f00">A</i><h3>Airwallex</h3></div><p><b>External</b> payment link – no card data in the app. US$99 founding / US$149 Premium, annual.</p><div class="chips"><span class="chip" style="border-color:var(--gold);color:#8a6512">request → pay → activate</span><span class="chip" style="border-color:var(--gold);color:#8a6512">manual vs webhook</span><span class="chip" style="border-color:var(--gold);color:#8a6512">renewal · lapse · GST</span></div><span class="tk">#15 premium-entitlement</span> <span class="tk">#4 commercial</span></div>
+
+  <!-- 7 Observability -->
+  <div class="layer orange" style="left:1420px;top:400px;width:252px;height:430px"><div class="lbl o">7. Observability / Operations<small>run &amp; protect</small></div></div>
+  <div class="box white" id="analytics" style="left:1434px;top:430px;width:224px"><h3 class="o">Analytics / monitoring</h3><p>Vercel Analytics · success metrics at 30/90/180 days · Premium conversion</p><span class="tk">#26 metrics</span></div>
+  <div class="box white" id="logs" style="left:1434px;top:520px;width:224px"><h3 class="o">Logs / audit trail</h3><p>Application logs · moderation &amp; approval history · profile-view records (consented)</p><span class="tk">#16 who-viewed-me</span> <span class="tk">#24 admin</span></div>
+  <div class="box white" id="secrets" style="left:1434px;top:620px;width:224px"><h3 class="o">Env vars / secrets · backups</h3><p>Vercel env per environment · Neon PITR backups · breach-notification runbook</p><span class="tk">#6 privacy</span></div>
+  <div class="box white" id="legal" style="left:1434px;top:712px;width:224px"><h3 class="o">Policies &amp; legal</h3><p>Privacy Policy · Terms · Community Guidelines · Partner &amp; Premium T&amp;Cs</p><span class="tk">#28 legal-docs</span></div>
+
+  <!-- 8 Future -->
+  <div class="layer orange" style="left:400px;top:960px;width:1000px;height:120px;border-color:var(--orange-ln)"><div class="lbl o">8. Later / Optional integrations<small>not in the v1 destination unless a ticket pulls them in</small></div></div>
+  <div class="box white" style="left:420px;top:990px;width:180px"><h3 style="font-size:12px">Video hosting</h3><p>YouTube / Vimeo embed for the featured community video</p></div>
+  <div class="box white" style="left:616px;top:990px;width:180px"><h3 style="font-size:12px">Jira mirror</h3><p>Implementation tickets after /to-tickets</p></div>
+  <div class="box white" style="left:812px;top:990px;width:180px"><h3 style="font-size:12px">CRM / outreach</h3><p>Founding-member campaign · partner pipeline <span class="tk" style="margin:0">#27</span></p></div>
+  <div class="box white" style="left:1008px;top:990px;width:180px"><h3 style="font-size:12px">Payments in-app</h3><p>Out of scope for v1 – Airwallex link only</p></div>
+  <div class="box white" style="left:1204px;top:990px;width:180px"><h3 style="font-size:12px">AI recommendations</h3><p>Out of scope for v1 – "people to connect with" is rules-based</p></div>
+
+  <div class="legend"><span><i class="ln"></i>request / data flow</span><span><i class="ln d"></i>telemetry · config · reference</span><span><span class="tk" style="margin:0">#n</span>Wayfinder ticket that decides this element</span><span style="color:var(--sic);font-weight:600">Stack mirrors the BAS platform (GitHub → Vercel · Clerk · Neon · Resend) as the default candidate; #3 build-vs-platform may replace it with a community platform.</span></div>
+  <div class="foot">Sustainable Investment Circle · candidate architecture v0.1 · Nov 2026 · Business Analyst Services</div>
+</div>
+
+<script>
+(function(){
+  const c=document.getElementById('c'), svg=document.getElementById('wires');
+  const R=(id)=>{const e=document.getElementById(id).getBoundingClientRect(), p=c.getBoundingClientRect(); return {l:e.left-p.left,t:e.top-p.top,r:e.right-p.left,b:e.bottom-p.top,cx:(e.left+e.right)/2-p.left,cy:(e.top+e.bottom)/2-p.top};};
+  const defs=`<defs>${['#1d5fd1','#1f7a3f','#5b3fb8','#0f7a86','#c7701a','#444','#8a6512'].map((col,i)=>`<marker id="m${i}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="${col}"/></marker>`).join('')}</defs>`;
+  const col={blue:['#1d5fd1',0],green:['#1f7a3f',1],purple:['#5b3fb8',2],teal:['#0f7a86',3],orange:['#c7701a',4],gray:['#444',5],gold:['#8a6512',6]};
+  let s=defs;
+  const line=(x1,y1,x2,y2,k,dash=false,arrow='end')=>{const [cc,i]=col[k]; s+=`<path d="M${x1} ${y1}L${x2} ${y2}" stroke="${cc}" stroke-width="2" fill="none" ${dash?'stroke-dasharray="6 5"':''} ${arrow.includes('end')?`marker-end="url(#m${i})"`:''} ${arrow.includes('start')?`marker-start="url(#m${i})"`:''}/>`;};
+  const poly=(pts,k,dash=false,arrow='end')=>{const [cc,i]=col[k]; s+=`<path d="M${pts.map(p=>p.join(' ')).join('L')}" stroke="${cc}" stroke-width="2" fill="none" ${dash?'stroke-dasharray="6 5"':''} ${arrow.includes('end')?`marker-end="url(#m${i})"`:''} ${arrow.includes('start')?`marker-start="url(#m${i})"`:''}/>`;};
+  const gh=R('github'), app=R('app'), api=R('api'), clerk=R('clerk'), br=R('browser'), neon=R('neon'), resend=R('resend'), aw=R('airwallex'), gen=R('gen'), an=R('analytics'), lg=R('logs'), sc=R('secrets'), dns=R('dns'), ph=R('phone');
+  // github -> app
+  line(gh.cx, gh.b, gh.cx, app.t-2, 'blue');
+  // users -> browser -> app
+  ['users','admins','partners'].forEach(id=>{const u=R(id); line(u.r, u.cy, br.l-2, u.cy>br.b? br.cy : u.cy<br.t? br.cy : u.cy, 'purple');});
+    line(br.r, br.cy, app.l-2, app.cy+40, 'gray');
+  // phone -> gen (QR) dashed
+  poly([[ph.r, ph.cy],[br.cx, ph.cy],[br.cx, br.b+2]], 'green', true);
+  // dns -> app dashed
+  line(dns.r, dns.cy, app.l-2, dns.cy, 'purple', true, '');
+  // app <-> clerk
+  line(app.r, app.t+60, clerk.l-2, app.t+60, 'purple', false, 'start end');
+  // app <-> api
+  line(app.l+80, app.b, app.l+80, api.t-2, 'green');
+  line(app.r-80, api.t, app.r-80, app.b+2, 'green');
+  // api -> gen
+  line(api.r, api.cy, gen.l-2, api.cy, 'green');
+  // api -> data
+  line(api.l+60, api.b, api.l+60, 648, 'green');
+  // api -> resend
+  poly([[api.r-40, api.b],[api.r-40, 636],[resend.cx, 636],[resend.cx, resend.t-2]], 'teal');
+  // api <-> airwallex
+  poly([[aw.cx, aw.t-2],[aw.cx, 624],[api.r+24, 624],[api.r+24, api.b-14],[api.r, api.b-14]], 'gold', true, 'start end');
+  // telemetry dashed to observability
+  poly([[app.r, app.b-20],[an.l-2, an.cy]], 'orange', true);
+  poly([[api.r, api.b-16],[1180,api.b-16],[1180, lg.cy],[lg.l-2, lg.cy]], 'orange', true);
+  poly([[clerk.r, clerk.cy],[1400, clerk.cy],[1400, lg.cy-30],[lg.l-2, lg.cy-30]], 'orange', true);
+  
+  poly([[aw.r, aw.cy],[1400, aw.cy],[1400, sc.cy],[sc.l-2, sc.cy]], 'orange', true);
+  svg.innerHTML=s;
+})();
+</script>
+</body>
+</html>
