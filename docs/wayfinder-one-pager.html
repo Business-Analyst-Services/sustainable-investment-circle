@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SIC Wayfinder Plan — One Page</title>
+<style>
+@page{size:420mm 297mm;margin:0}
+:root{
+  --g9:#0f3b2e;--g8:#174a3a;--g7:#1f5c48;--g1:#e3efe8;--g05:#f2f7f4;
+  --gold:#c9962b;--gold1:#fbf1d9;--ink:#17201c;--mute:#5a675f;--line:#d6e1da;
+  --hitl:#1f5c48;--afk:#4a5aa8;--task:#8a5a16;--proto:#8c3a5c;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{width:420mm;height:297mm;font-family:Inter,"DejaVu Sans",sans-serif;color:var(--ink);background:#fff;font-size:8.4pt;line-height:1.25;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:420mm;height:297mm;padding:8mm 10mm 6mm;display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;gap:4mm;overflow:hidden}
+h1,h2,h3,.serif{font-family:"Bitstream Charter",Charter,Georgia,serif;margin:0;letter-spacing:-.01em}
+/* header */
+.hdr{display:grid;grid-template-columns:1.25fr 1fr;gap:6mm;align-items:stretch}
+.title{background:linear-gradient(110deg,var(--g9),var(--g8) 55%,#246a52);color:#fff;border-radius:4mm;padding:4.5mm 6mm;position:relative;overflow:hidden}
+.title:after{content:"";position:absolute;right:-30mm;top:-30mm;width:80mm;height:80mm;border-radius:50%;background:rgba(255,255,255,.07)}
+.eyebrow{font-size:7.5pt;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.title h1{font-size:21pt;line-height:1.1;margin:1.5mm 0 2mm;font-weight:700}
+.title p{margin:0;font-size:9.5pt;color:#d6e6dd;max-width:150mm}
+.dest{background:var(--g05);border:1px solid var(--line);border-radius:4mm;padding:5mm 6mm;display:flex;flex-direction:column;justify-content:center}
+.dest .eyebrow{color:var(--g7)}
+.dest p{margin:1.2mm 0 0;font-family:"Bitstream Charter",Georgia,serif;font-size:10.2pt;line-height:1.35;color:var(--g9)}
+/* approach strip */
+.approach{display:grid;grid-template-columns:auto repeat(6,1fr);gap:3mm;align-items:stretch}
+.approach .lbl{writing-mode:vertical-rl;transform:rotate(180deg);font-size:7.5pt;letter-spacing:.16em;text-transform:uppercase;color:var(--g7);font-weight:600;text-align:center;border-right:2px solid var(--gold);padding-left:1mm}
+.ap{background:#fff;border:1px solid var(--line);border-radius:3mm;padding:2.2mm 3mm;position:relative}
+.ap b{display:block;font-size:9.5pt;color:var(--g9);margin-bottom:1mm;font-family:"Bitstream Charter",Georgia,serif}
+.ap span{font-size:7.4pt;color:var(--mute)}
+.ap i{position:absolute;top:2.5mm;right:3mm;font-style:normal;width:5mm;height:5mm;border-radius:50%;background:var(--gold1);color:var(--gold);font-size:7pt;font-weight:700;display:grid;place-items:center}
+/* main */
+.main{display:grid;grid-template-columns:1.08fr 2.35fr .82fr;gap:4mm;min-height:0;overflow:hidden}
+.col{display:flex;flex-direction:column;gap:3mm;min-height:0;overflow:hidden}
+.panel{border:1px solid var(--line);border-radius:3.5mm;padding:2.8mm 3.5mm;background:#fff;overflow:hidden}
+.panel h2{font-size:11pt;color:var(--g9);margin-bottom:.3mm}
+.panel .sub{font-size:7.3pt;color:var(--mute);margin:0 0 1.8mm}
+.num{display:inline-grid;place-items:center;width:5.2mm;height:5.2mm;border-radius:50%;background:var(--gold1);color:var(--gold);font-size:7.5pt;font-weight:700;margin-right:1.5mm;vertical-align:middle;font-family:Inter}
+code{font-family:"DejaVu Sans Mono",monospace;font-size:7.8pt;background:var(--g05);border:1px solid var(--line);border-radius:1mm;padding:0 1.2mm;color:var(--g9);white-space:nowrap}
+.tag{display:inline-block;font-size:6.3pt;font-weight:700;border-radius:1mm;padding:.3mm 1.3mm;color:#fff;text-transform:uppercase;letter-spacing:.04em;vertical-align:middle}
+.t-g{background:var(--hitl)}.t-r{background:var(--afk)}.t-t{background:var(--task)}.t-p{background:var(--proto)}
+.frontier .f{padding:1.2mm 0;border-top:1px dashed var(--line)}
+.frontier .f:first-of-type{border-top:0;padding-top:0}
+.frontier .f b{font-size:8.2pt;color:var(--g9)}
+.frontier .f p{margin:.4mm 0 0;font-size:7pt;color:var(--mute)}
+.frontier .f .blk{font-size:6.7pt;color:var(--g7);margin-top:.4mm}
+/* lanes */
+.lanes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2.5mm;flex:1}
+.lane{background:var(--g05);border-radius:3mm;padding:2.2mm;display:flex;flex-direction:column;gap:1.5mm;min-width:0}
+.lane h3{font-size:9pt;color:var(--g9);padding-bottom:1.5mm;border-bottom:2px solid var(--gold);margin-bottom:.5mm}
+.tk{background:#fff;border:1px solid var(--line);border-radius:2mm;padding:1.4mm 2mm}
+.tk .n{display:flex;justify-content:space-between;align-items:center;gap:1mm}
+.tk .n code{font-size:7pt;border:0;background:none;padding:0;font-weight:700;color:var(--g9);white-space:normal;overflow-wrap:anywhere}
+.tk p{margin:.5mm 0 0;font-size:6.9pt;color:var(--mute);line-height:1.22}
+.tk .by{font-size:6.6pt;color:var(--g7);margin-top:.6mm}
+.tk .by:before{content:"← ";color:var(--gold)}
+.legend{display:flex;gap:3mm;flex-wrap:nowrap;font-size:7pt;color:var(--mute);margin-top:1.8mm;align-items:center}
+.legend span{display:flex;align-items:center;gap:1mm}
+/* right col */
+ul{margin:0;padding-left:4mm}
+li{margin:.5mm 0;font-size:7.3pt;color:var(--mute)}
+.fog li::marker{color:var(--gold)}
+.oos li{color:var(--mute)}
+.callout{background:var(--gold1);border-left:1.2mm solid var(--gold);border-radius:2mm;padding:1.8mm 2.5mm;font-size:7pt;color:#5a4410}
+/* footer rail */
+.rail{display:grid;grid-template-columns:2.2fr 1fr;gap:4mm;align-items:stretch}
+.sessions{display:grid;grid-template-columns:repeat(7,1fr);gap:2mm;align-items:stretch}
+.ss{background:#fff;border:1px solid var(--line);border-radius:2.5mm;padding:1.5mm 2.2mm;position:relative}
+.ss i{font-style:normal;font-size:6.5pt;color:var(--gold);font-weight:700;letter-spacing:.1em}
+.ss b{display:block;font-size:8.2pt;color:var(--g9);margin:.4mm 0}
+.ss span{font-size:7pt;color:var(--mute)}
+.ss:not(:last-child):after{content:"›";position:absolute;right:-2.1mm;top:38%;color:var(--gold);font-size:11pt;font-weight:700}
+.handoff{background:var(--g9);color:#fff;border-radius:3mm;padding:3mm 4mm;display:grid;grid-template-columns:auto 1fr;gap:3mm;align-items:center}
+.handoff .eyebrow{writing-mode:vertical-rl;transform:rotate(180deg);text-align:center}
+.handoff .steps{display:flex;gap:2mm;align-items:center}
+.handoff .st{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:2mm;padding:1.8mm 2.2mm}
+.handoff .st b{display:block;font-family:"DejaVu Sans Mono",monospace;font-size:8pt;color:var(--gold)}
+.handoff .st span{font-size:6.9pt;color:#cfe0d6}
+.handoff .arr{color:var(--gold);font-size:12pt}
+.foot{display:flex;justify-content:space-between;font-size:6.8pt;color:var(--mute);margin-top:-1.5mm}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="title">
+      <div class="eyebrow">Sustainable Investment Circle · v1 build plan</div>
+      <h1>The Wayfinder map — from finished prototype to live community</h1>
+      <p>Built with Matt Pocock's <strong>/wayfinder</strong> skill. The map plans and does not build: every ticket asks one question and its answer is a decision. The UI is already designed — the fog is platform, commercial, privacy and operating decisions.</p>
+    </div>
+    <div class="dest">
+      <div class="eyebrow">Destination — the end state of the whole map</div>
+      <p>A live, production SIC v1 that an ESG professional can join, complete a profile, find and connect with members, message, post in specialist channels, browse research, events and partners, and request Premium — matching the 19 Aug 2026 walkthrough — with enough admin tooling for a small team to run it day to day.</p>
+    </div>
+  </div>
+
+  <!-- APPROACH STRIP -->
+  <div class="approach">
+    <div class="lbl">How it works</div>
+    <div class="ap"><i>1</i><b>Name the destination</b><span>For the whole map, not the first session.</span></div>
+    <div class="ap"><i>2</i><b>Breadth-first grill</b><span>Find the fog. No fog → skip the map, go straight to spec.</span></div>
+    <div class="ap"><i>3</i><b>Chart tickets</b><span>Precise questions get a type, a mode (HITL / AFK) and blocking edges.</span></div>
+    <div class="ap"><i>4</i><b>One ticket per session</b><span>Claim → decide → resolution comment → close → one line in "Decisions so far" → stop.</span></div>
+    <div class="ap"><i>5</i><b>Graduate the fog</b><span>Each decision clears nearby fog; anything now specifiable becomes a ticket.</span></div>
+    <div class="ap"><i>6</i><b>Hand off when clear</b><span>/to-spec → /to-tickets → /implement. Wayfinder never continues into code.</span></div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- LEFT: decided + frontier -->
+    <div class="col">
+      <div class="panel">
+        <h2>Decisions so far</h2>
+        <p class="sub">Already made by the prototype — confirm, don't re-litigate</p>
+        <ul>
+          <li><b>Brand & IA</b> — name, green/gold system, 13-item nav, Advertise & Support CTAs</li>
+          <li><b>Onboarding</b> — name, org, market type, job role, email, password</li>
+          <li><b>Home</b> — feed with files, invites (email/CSV), stats, people & events rails</li>
+          <li><b>Members</b> — search + Country · City · Market type · Job role filters</li>
+          <li><b>Profile</b> — strength meter, PDF download, QR connect, public page</li>
+          <li><b>Messages & Channels</b> — DMs, private groups, 15 seeded ESG channels</li>
+          <li><b>Research · Events · Partners</b> — ACSI & RIAA; member-listed events; Harvest by Dasseti</li>
+          <li><b>Premium</b> — US$99 founding / US$149 annual; external Airwallex link; intelligence + public page</li>
+        </ul>
+      </div>
+      <div class="panel frontier" style="flex:1">
+        <h2>The frontier — start here</h2>
+        <p class="sub">Open, unblocked, unclaimed. These six unblock everything else.</p>
+        <div class="f"><span class="num">1</span><b>confirm-baseline</b> <span class="tag t-g">grilling</span><p>Which screens are firm v1, which aspirational (Premium analytics?), which details placeholders.</p><div class="blk">Blocks: everything</div></div>
+        <div class="f"><span class="num">2</span><b>build-vs-platform</b> <span class="tag t-r">research</span> <span class="tag t-g">grilling</span><p>Custom build vs Circle / Mighty Networks / Hivebrite / Discourse vs headless hybrid.</p><div class="blk">Blocks: stack, auth, domain model, search</div></div>
+        <div class="f"><span class="num">3</span><b>commercial-model</b> <span class="tag t-g">grilling</span><p>Revenue lines & who pays; founding window; member targets; US$ pricing vs AU cohort.</p><div class="blk">Blocks: premium, partners/ads, seeding</div></div>
+        <div class="f"><span class="num">4</span><b>member-eligibility</b> <span class="tag t-g">grilling</span><p>Open vs vetted; corporate-email check; final market-type & job-role taxonomy.</p><div class="blk">Blocks: auth, domain model, invites</div></div>
+        <div class="f"><span class="num">5</span><b>privacy-and-residency</b> <span class="tag t-r">research</span> <span class="tag t-g">grilling</span><p>Privacy Act / APPs: "Who viewed me", others' profile PDFs, QR exchange, uploads, hosting.</p><div class="blk">Blocks: who-viewed-me, PDF/QR, hosting, legal</div></div>
+        <div class="f"><span class="num">6</span><b>operating-model</b> <span class="tag t-g">grilling</span><p>Admin roles, moderation, approvals, support inbox, hours per week.</p><div class="blk">Blocks: admin, curation, events, premium</div></div>
+      </div>
+    </div>
+
+    <!-- CENTRE: second wave lanes -->
+    <div class="col">
+      <div class="panel" style="flex:1;display:flex;flex-direction:column">
+        <h2>Second-wave tickets</h2>
+        <p class="sub">Unlock as the frontier clears · 20 tickets in four lanes · "←" = blocked by</p>
+        <div class="lanes">
+          <div class="lane"><h3>Platform & data</h3>
+            <div class="tk"><div class="n"><code>tech-stack-hosting</code><span class="tag t-g">G</span></div><p>Stack, region, environments, CI/CD, backups, cost ceiling.</p><div class="by">build-vs-platform, privacy</div></div>
+            <div class="tk"><div class="n"><code>identity-auth</code><span class="tag t-g">G</span></div><p>Password vs magic link; MFA; policy (min 6 is too weak); recovery.</p><div class="by">eligibility, stack</div></div>
+            <div class="tk"><div class="n"><code>domain-model</code><span class="tag t-g">G</span></div><p>Member, Org, Connection, Message, Channel, Post, Event, Provider, Partner, Subscription, Alert, ProfileView.</p><div class="by">baseline, eligibility</div></div>
+            <div class="tk"><div class="n"><code>search-approach</code><span class="tag t-r">R</span></div><p>Primary DB vs search service for the directory filters.</p><div class="by">build-vs-platform</div></div>
+            <div class="tk"><div class="n"><code>accounts-setup</code><span class="tag t-t">T</span></div><p>Airwallex, domain/DNS, email domain, video hosting, analytics.</p><div class="by">stack, premium</div></div>
+          </div>
+          <div class="lane"><h3>Member experience</h3>
+            <div class="tk"><div class="n"><code>connection-model</code><span class="tag t-g">G</span></div><p>Request / accept, QR in-person flow, what is connections-only, blocking.</p><div class="by">domain-model</div></div>
+            <div class="tk"><div class="n"><code>messaging-scope</code><span class="tag t-g">G</span></div><p>Real-time vs polling, groups, attachments, retention.</p><div class="by">domain, connection</div></div>
+            <div class="tk"><div class="n"><code>feed-and-channels-rules</code><span class="tag t-g">G</span></div><p>Post types, file limits, who creates channels, featured video, moderation hooks.</p><div class="by">domain, operating</div></div>
+            <div class="tk"><div class="n"><code>profile-pdf-qr</code><span class="tag t-r">R</span><span class="tag t-p">P</span></div><p>PDF template & consent; QR payload (URL vs vCard) and expiry.</p><div class="by">privacy, connection</div></div>
+            <div class="tk"><div class="n"><code>invite-import</code><span class="tag t-g">G</span></div><p>Email template, CSV schema, limits, anti-spam.</p><div class="by">eligibility</div></div>
+            <div class="tk"><div class="n"><code>notifications-alerts</code><span class="tag t-g">G</span></div><p>Alert types incl. Premium search alerts; in-app vs email; digests.</p><div class="by">domain, premium</div></div>
+            <div class="tk"><div class="n"><code>responsive-accessibility</code><span class="tag t-g">G</span><span class="tag t-p">P</span></div><p>Walkthrough is desktop-only: mobile-web scope, WCAG target.</p><div class="by">baseline</div></div>
+          </div>
+          <div class="lane"><h3>Commercial & Premium</h3>
+            <div class="tk"><div class="n"><code>premium-entitlement</code><span class="tag t-g">G</span></div><p>Airwallex link → manual vs webhook activation; renewal, lapse, founding-rate lock, GST.</p><div class="by">commercial, operating</div></div>
+            <div class="tk"><div class="n"><code>who-viewed-me-rules</code><span class="tag t-g">G</span></div><p>Consent (opt-in? anonymised?), retention, what each side sees.</p><div class="by">privacy, premium</div></div>
+            <div class="tk"><div class="n"><code>premium-page-scope</code><span class="tag t-p">P</span></div><p>What the Premium home page holds and how it's edited — only a preview exists.</p><div class="by">premium</div></div>
+            <div class="tk"><div class="n"><code>partners-advertising</code><span class="tag t-g">G</span></div><p>Partner tiers, ad placements, pricing, disclosure rules.</p><div class="by">commercial</div></div>
+            <div class="tk"><div class="n"><code>analytics-success-metrics</code><span class="tag t-g">G</span></div><p>What "working" means at 30 / 90 / 180 days and the tooling.</p><div class="by">commercial</div></div>
+          </div>
+          <div class="lane"><h3>Operate & launch</h3>
+            <div class="tk"><div class="n"><code>moderation-admin</code><span class="tag t-g">G</span></div><p>Admin console: approvals, reports, partners, announcements.</p><div class="by">operating</div></div>
+            <div class="tk"><div class="n"><code>research-curation</code><span class="tag t-g">G</span></div><p>Who adds providers, approval, categories, seed list, de-listing.</p><div class="by">operating</div></div>
+            <div class="tk"><div class="n"><code>events-workflow</code><span class="tag t-g">G</span></div><p>Who lists, approval, fields, ICS export, past events.</p><div class="by">operating</div></div>
+            <div class="tk"><div class="n"><code>cold-start-seeding</code><span class="tag t-g">G</span><span class="tag t-t">T</span></div><p>Launch cohort, founding outreach, seed content, fate of demo data.</p><div class="by">commercial, eligibility</div></div>
+            <div class="tk"><div class="n"><code>legal-docs</code><span class="tag t-t">T</span></div><p>Privacy Policy, Terms, Guidelines, Partner & Premium T&Cs — legal review.</p><div class="by">privacy, commercial</div></div>
+          </div>
+        </div>
+        <div class="legend">
+          <strong style="color:var(--ink)">Types</strong>
+          <span><span class="tag t-g">G</span> grilling · HITL</span>
+          <span><span class="tag t-p">P</span> prototype · HITL</span>
+          <span><span class="tag t-r">R</span> research · AFK</span>
+          <span><span class="tag t-t">T</span> task · manual work</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: fog, out of scope, setup -->
+    <div class="col">
+      <div class="panel fog">
+        <h2>Not yet specified</h2>
+        <p class="sub">The fog of war — graduate into tickets as decisions land</p>
+        <ul>
+          <li>Organisation as first-class entity, or a text field?</li>
+          <li>"People to connect with" — rules or smarter?</li>
+          <li>Content lifecycle: stale channels, expired events, lapsed Premium pages</li>
+          <li>Geography beyond Australia; US$ vs AU pricing</li>
+          <li>Data export & account deletion</li>
+          <li>Rate limits / anti-spam for invites, DMs, posts</li>
+          <li>Research providers vs Partners — one entity, two tiers?</li>
+        </ul>
+      </div>
+      <div class="panel oos">
+        <h2>Out of scope</h2>
+        <p class="sub">Never graduates on this map — would be a new destination</p>
+        <ul>
+          <li>Native iOS / Android apps</li>
+          <li>In-app card capture; any route but the Airwallex link</li>
+          <li>Research marketplace / paid downloads</li>
+          <li>Enterprise SSO; org-level subscriptions</li>
+          <li>AI matchmaking or summaries beyond simple rules</li>
+          <li>Multi-language; public job board</li>
+        </ul>
+      </div>
+      <div class="panel" style="flex:1">
+        <h2>Before you start</h2>
+        <p class="sub">Prerequisites and the rules that bite</p>
+        <ul>
+          <li><b>Tracker:</b> GitHub, GitLab or local markdown — <b>not Jira</b>. Use a GitHub repo; native blocking links show the frontier. Mirror to Jira after /to-tickets.</li>
+          <li><b>Install:</b> <code>npx skills@latest add mattpocock/skills</code> → <code>setup-matt-pocock-skills</code> → <code>/wayfinder</code></li>
+          <li><b>Plan only:</b> the prototype looks finished — no "just wiring up" a screen inside the map.</li>
+          <li><b>Cadence:</b> 26 tickets ≈ 20–25 sessions; research runs in parallel on <code>research/&lt;name&gt;</code> branches.</li>
+        </ul>
+        <div class="callout" style="margin-top:2.5mm"><b>Source caveat.</b> Narration wasn't transcribed; "Decisions so far" is read from screens and captions. If the voiceover states dates or targets, add them before session 1.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RAIL -->
+  <div class="rail">
+    <div class="panel" style="padding:3mm 4mm">
+      <h2 style="font-size:11pt;margin-bottom:2mm">Suggested session order <span style="font-family:Inter;font-size:7.5pt;color:var(--mute);font-weight:400">· one ticket per session · spin research early</span></h2>
+      <div class="sessions">
+        <div class="ss"><i>S1</i><b>confirm-baseline</b><span>Walkthrough open</span></div>
+        <div class="ss"><i>S2</i><b>build-vs-platform</b><span>Research, then grill</span></div>
+        <div class="ss"><i>S3</i><b>commercial-model</b><span>Pricing & targets</span></div>
+        <div class="ss"><i>S4</i><b>member-eligibility</b><span>Vetting & taxonomy</span></div>
+        <div class="ss"><i>S5</i><b>privacy-and-residency</b><span>Research alongside S3–4</span></div>
+        <div class="ss"><i>S6</i><b>operating-model</b><span>Who runs it</span></div>
+        <div class="ss"><i>S7+</i><b>Follow the frontier</b><span>domain → connection → premium → rest</span></div>
+      </div>
+    </div>
+    <div class="handoff">
+      <div class="eyebrow">Handoff</div>
+      <div class="steps">
+        <div class="st"><b>/to-spec</b><span>Collapse decisions; attach the walkthrough as UI reference</span></div><span class="arr">›</span>
+        <div class="st"><b>/to-tickets</b><span>Slice the spec (Jira mirror here)</span></div><span class="arr">›</span>
+        <div class="st"><b>/implement</b><span>Build, one ticket at a time</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Method: aihero.dev/skills-wayfinder · github.com/mattpocock/skills</span>
+    <span>Prepared from the Sustainable Investment Circle member walkthrough (19 Aug 2026) · Business Analyst Services · Nov 2026</span>
+  </div>
+</div>
+</body>
+</html>
